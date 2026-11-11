@@ -8,6 +8,18 @@ import asyncio
 import tempfile
 from app.config import logger, DEFAULT_VOICE
 
+# Monkey-patch PyAV: newer versions (>=18) removed metadata_errors kwarg,
+# which breaks faster-whisper's decode_audio().
+try:
+    import av
+    _orig_av_open = av.open
+    def _safe_av_open(*args, **kwargs):
+        kwargs.pop("metadata_errors", None)
+        return _orig_av_open(*args, **kwargs)
+    av.open = _safe_av_open
+except Exception:
+    pass
+
 _whisper_model = None
 
 def get_whisper_model():
