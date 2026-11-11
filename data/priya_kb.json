@@ -1,0 +1,267 @@
+{
+  "seller_profile": {
+    "id": "SD-45891",
+    "name": "Priya Mehta",
+    "store": "Priya's Fashion Studio",
+    "category": "Women's Fashion",
+    "city": "Mumbai",
+    "tier": "Gold Seller",
+    "rating": 4.3,
+    "reviews": 2870,
+    "total_catalog_skus": 38,
+    "joined_months_ago": 29
+  },
+  "performance": {
+    "last_month": {
+      "label": "October 2026",
+      "revenue": 320000,
+      "orders": 640,
+      "avg_selling_price": 500,
+      "cancellation_rate": 0.06,
+      "oos_products": 3,
+      "return_rate": 0.08,
+      "conversion_rate": 0.031
+    },
+    "this_month": {
+      "label": "November 2026",
+      "revenue": 210000,
+      "orders": 390,
+      "avg_selling_price": 538,
+      "cancellation_rate": 0.09,
+      "oos_products": 8,
+      "return_rate": 0.12,
+      "conversion_rate": 0.021
+    }
+  },
+  "products": [
+    {
+      "id": "SKU-P01",
+      "name": "Cotton Kurti Set with Dupatta",
+      "category": "Kurtis",
+      "price": 749,
+      "competitor_avg": 649,
+      "unit_cost": 320,
+      "platform_fee": 95,
+      "rating": 4.4,
+      "listing_score": 58,
+      "status": "Out of Stock",
+      "stock": 0,
+      "lead_time_days": 7,
+      "sales_last_month": 180,
+      "sales_this_month": 22
+    },
+    {
+      "id": "SKU-P02",
+      "name": "Embroidered Banarasi Saree",
+      "category": "Sarees",
+      "price": 1299,
+      "competitor_avg": 1199,
+      "unit_cost": 650,
+      "platform_fee": 165,
+      "rating": 3.9,
+      "listing_score": 44,
+      "status": "Active",
+      "stock": 42,
+      "lead_time_days": 3,
+      "sales_last_month": 95,
+      "sales_this_month": 51
+    },
+    {
+      "id": "SKU-P03",
+      "name": "Bridal Lehenga Choli Set",
+      "category": "Lehengas",
+      "price": 2499,
+      "competitor_avg": 2199,
+      "unit_cost": 1300,
+      "platform_fee": 320,
+      "rating": 4.5,
+      "listing_score": 71,
+      "status": "Out of Stock",
+      "stock": 0,
+      "lead_time_days": 10,
+      "sales_last_month": 42,
+      "sales_this_month": 5
+    },
+    {
+      "id": "SKU-P04",
+      "name": "Rayon Palazzo Pants",
+      "category": "Bottomwear",
+      "price": 449,
+      "competitor_avg": 429,
+      "unit_cost": 180,
+      "platform_fee": 60,
+      "rating": 4.2,
+      "listing_score": 76,
+      "status": "Active",
+      "stock": 310,
+      "lead_time_days": 3,
+      "sales_last_month": 220,
+      "sales_this_month": 198
+    },
+    {
+      "id": "SKU-P05",
+      "name": "Printed Cotton Casual Top",
+      "category": "Tops",
+      "price": 299,
+      "competitor_avg": 289,
+      "unit_cost": 110,
+      "platform_fee": 42,
+      "rating": 4.1,
+      "listing_score": 69,
+      "status": "Active",
+      "stock": 520,
+      "lead_time_days": 2,
+      "sales_last_month": 103,
+      "sales_this_month": 114
+    }
+  ],
+  "cancellation_breakdown": {
+    "total_this_month": 35,
+    "reasons": [
+      {
+        "reason": "Out of stock post-order",
+        "pct": 38,
+        "count": 13
+      },
+      {
+        "reason": "Size not available / mismatch",
+        "pct": 32,
+        "count": 11
+      },
+      {
+        "reason": "Delivery delay expected",
+        "pct": 20,
+        "count": 7
+      },
+      {
+        "reason": "Buyer changed mind",
+        "pct": 10,
+        "count": 4
+      }
+    ]
+  },
+  "market_context": {
+    "category_growth_this_month": 0.22,
+    "seller_growth_this_month": -0.344,
+    "platform_avg_cancel_rate": 0.06,
+    "active_competitors_added": 28,
+    "festive_window": "Active — Wedding Season & Diwali Gifting",
+    "seller_enrolled_festive": false,
+    "seller_enrolled_plus": true,
+    "oos_ads_paused": false
+  },
+  "causal_hypotheses": [
+    {
+      "id": "H1",
+      "priority": "P0 - Critical",
+      "title": "Wedding Season Inventory Crisis",
+      "observation": "Kurti Set & Bridal Lehenga OOS during peak wedding season (Nov); Women's Fashion grew +22% but Priya's revenue fell 34.4%. Direct OOS revenue loss: ₹99,610.",
+      "mechanism": "Restoring Kurti Set (180→100 unit buffer) and Lehenga (42→30 unit buffer) captures the wedding/gifting surge.",
+      "action": "Emergency restock Kurti Set & Lehenga from Mumbai textile suppliers; pause ads on 8 OOS SKUs immediately.",
+      "metric": "OOS cancellations (38%)→<10%; weekly revenue +₹24,000.",
+      "stop_condition": "If supplier lead time >7 days, source from Surat wholesale market.",
+      "projected_recovery": "₹99,610/mo"
+    },
+    {
+      "id": "H2",
+      "priority": "P0 - Critical",
+      "title": "Size Chart & Listing Quality Improvement",
+      "observation": "32% of cancellations (11 orders) are size mismatches. Embroidered Saree listing score only 44 — missing size guide, fit chart, and care instructions.",
+      "mechanism": "Adding size charts and 'fits true to size' photos reduces size-related returns from 12% to <5%.",
+      "action": "Upload detailed size charts, measurement guide, and 5+ product images for Saree and Kurti listings.",
+      "metric": "Return rate 12%→<5%; listing score >75.",
+      "stop_condition": "Track 2-week return rate after update; revert to previous images if returns rise.",
+      "projected_recovery": "₹22,400/mo"
+    },
+    {
+      "id": "H3",
+      "priority": "P1 - High",
+      "title": "Wedding Season Festive Deal Enrollment",
+      "observation": "Women's Fashion grew +22% in November (wedding + Diwali gifting). Priya not enrolled in festive deals despite Gold Seller status.",
+      "mechanism": "Enrolling in-stock Palazzo Pants and Cotton Tops in Festive Deals captures +40% organic impressions during peak season.",
+      "action": "Enroll Palazzo Pants, Cotton Tops, and active Saree listings in Snapdeal November Festive Deals today.",
+      "metric": "Organic impressions +40%; conversion 2.1%→3%.",
+      "stop_condition": "Restrict enrollment to SKUs with >50 units stock.",
+      "projected_recovery": "₹31,000/mo"
+    }
+  ],
+  "playbook": [
+    {
+      "id": "pb_wedding_season_oos",
+      "title": "Wedding Season Out-of-Stock Recovery",
+      "tags": [
+        "inventory",
+        "oos",
+        "wedding",
+        "season",
+        "kurti",
+        "lehenga",
+        "restock",
+        "supplier"
+      ],
+      "applies_when": "oos_products >= 5 and category == Women's Fashion",
+      "text": "Emergency restock Kurti Set and Bridal Lehenga within 48 hours from Mumbai textile suppliers or Surat wholesale market. Pause ads on all 8 OOS listings immediately to prevent post-order cancellations. Maintain 100-unit buffer for Kurti Set and 30-unit buffer for Lehenga during peak wedding season (Nov-Feb)."
+    },
+    {
+      "id": "pb_size_return_reduction",
+      "title": "Size Mismatch & Return Rate Reduction",
+      "tags": [
+        "returns",
+        "size",
+        "mismatch",
+        "chart",
+        "listing",
+        "quality",
+        "photos",
+        "fit"
+      ],
+      "applies_when": "return_rate >= 0.10 or cancellation_reason == size mismatch",
+      "text": "32% of cancellations are size-related. Upload detailed size charts with measurements in cm and inches, model height/weight for reference photos, and care washing instructions. Adding 'fits true to size' verified badges reduces return rate from 12% to below 5%."
+    },
+    {
+      "id": "pb_listing_quality_fashion",
+      "title": "Fashion Listing Quality & Search Visibility",
+      "tags": [
+        "listing",
+        "score",
+        "images",
+        "saree",
+        "keywords",
+        "seo",
+        "visibility",
+        "photos"
+      ],
+      "applies_when": "listing_score < 70",
+      "text": "Embroidered Saree listing score is only 44 — well below the 75+ threshold for search boosting. Upload 6+ lifestyle images, add colour/fabric/occasion keywords in bullet points, and complete the size guide. Listings above 75 score get 2x more organic search impressions on Snapdeal."
+    },
+    {
+      "id": "pb_festive_fashion_deals",
+      "title": "Wedding & Festive Season Deal Campaign",
+      "tags": [
+        "festive",
+        "wedding",
+        "deals",
+        "promotion",
+        "traffic",
+        "season",
+        "diwali"
+      ],
+      "applies_when": "not seller_enrolled_festive and category_growth >= 0.15",
+      "text": "Women's Fashion grew 22% in November. Enroll Palazzo Pants, Cotton Tops, and active Saree listings in Snapdeal Festive Deals to capture +40% organic impressions. Gold Seller status guarantees banner placement in category pages during the festive window."
+    },
+    {
+      "id": "pb_pricing_fashion",
+      "title": "Fashion Pricing & Competitor Benchmarking",
+      "tags": [
+        "pricing",
+        "price",
+        "competitor",
+        "margin",
+        "conversion",
+        "expensive"
+      ],
+      "applies_when": "price > competitor_avg * 1.08",
+      "text": "Kurti Set priced ₹749 vs market ₹649 (15% premium) during peak demand. Matching market price at ₹649 retains ₹234 net profit (36% margin) while rebounding conversion. Embroidered Saree at ₹1,299 vs ₹1,199 market — dropping to ₹1,199 retains ₹384 net margin (32%)."
+    }
+  ]
+}

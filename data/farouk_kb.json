@@ -1,0 +1,271 @@
+{
+  "seller_profile": {
+    "id": "SD-33127",
+    "name": "Mohammed Farouk",
+    "store": "Farouk Electronics Hub",
+    "category": "Home Electronics",
+    "city": "Delhi",
+    "tier": "Gold Seller",
+    "rating": 3.8,
+    "reviews": 3410,
+    "total_catalog_skus": 22,
+    "joined_months_ago": 36,
+    "account_health_flag": "Warning: Return rate spike"
+  },
+  "performance": {
+    "last_month": {
+      "label": "October 2026",
+      "revenue": 580000,
+      "orders": 290,
+      "avg_selling_price": 2000,
+      "cancellation_rate": 0.07,
+      "oos_products": 1,
+      "return_rate": 0.04,
+      "conversion_rate": 0.019
+    },
+    "this_month": {
+      "label": "November 2026",
+      "revenue": 420000,
+      "orders": 192,
+      "avg_selling_price": 2188,
+      "cancellation_rate": 0.1,
+      "oos_products": 3,
+      "return_rate": 0.09,
+      "conversion_rate": 0.013
+    }
+  },
+  "products": [
+    {
+      "id": "SKU-F01",
+      "name": "32-inch Full HD LED Smart TV",
+      "category": "Televisions",
+      "price": 12999,
+      "competitor_avg": 11499,
+      "unit_cost": 8500,
+      "platform_fee": 1300,
+      "rating": 3.5,
+      "listing_score": 61,
+      "status": "Active",
+      "stock": 18,
+      "lead_time_days": 5,
+      "sales_last_month": 44,
+      "sales_this_month": 22,
+      "quality_issues": "High return rate: 'remote lag', 'WiFi drops after 2 hours', 'remote unresponsive'"
+    },
+    {
+      "id": "SKU-F02",
+      "name": "Portable Bluetooth Speaker 20W",
+      "category": "Audio",
+      "price": 1799,
+      "competitor_avg": 1699,
+      "unit_cost": 980,
+      "platform_fee": 230,
+      "rating": 4.4,
+      "listing_score": 83,
+      "status": "Active",
+      "stock": 125,
+      "lead_time_days": 2,
+      "sales_last_month": 98,
+      "sales_this_month": 87
+    },
+    {
+      "id": "SKU-F03",
+      "name": "5.5L Digital Air Fryer with Timer",
+      "category": "Kitchen Appliances",
+      "price": 3499,
+      "competitor_avg": 2999,
+      "unit_cost": 1900,
+      "platform_fee": 440,
+      "rating": 4.6,
+      "listing_score": 88,
+      "status": "Out of Stock",
+      "stock": 0,
+      "lead_time_days": 8,
+      "sales_last_month": 62,
+      "sales_this_month": 11
+    },
+    {
+      "id": "SKU-F04",
+      "name": "Robot Vacuum Cleaner with Mapping",
+      "category": "Cleaning Appliances",
+      "price": 8999,
+      "competitor_avg": 7999,
+      "unit_cost": 5500,
+      "platform_fee": 1100,
+      "rating": 4.3,
+      "listing_score": 79,
+      "status": "Out of Stock",
+      "stock": 0,
+      "lead_time_days": 12,
+      "sales_last_month": 28,
+      "sales_this_month": 3
+    },
+    {
+      "id": "SKU-F05",
+      "name": "Mixer Grinder 750W 3-Jar",
+      "category": "Kitchen Appliances",
+      "price": 2199,
+      "competitor_avg": 2099,
+      "unit_cost": 1200,
+      "platform_fee": 280,
+      "rating": 4.2,
+      "listing_score": 74,
+      "status": "Active",
+      "stock": 67,
+      "lead_time_days": 3,
+      "sales_last_month": 58,
+      "sales_this_month": 69
+    }
+  ],
+  "cancellation_breakdown": {
+    "total_this_month": 19,
+    "reasons": [
+      {
+        "reason": "Delivery delay expected (>7 days)",
+        "pct": 43,
+        "count": 8
+      },
+      {
+        "reason": "Out of stock post-order",
+        "pct": 32,
+        "count": 6
+      },
+      {
+        "reason": "Price issue / found cheaper",
+        "pct": 15,
+        "count": 3
+      },
+      {
+        "reason": "Buyer changed mind",
+        "pct": 10,
+        "count": 2
+      }
+    ]
+  },
+  "market_context": {
+    "category_growth_this_month": 0.15,
+    "seller_growth_this_month": -0.276,
+    "platform_avg_cancel_rate": 0.06,
+    "active_competitors_added": 7,
+    "festive_window": "Active — Big Diwali Sale & Winter Gifting",
+    "seller_enrolled_festive": false,
+    "seller_enrolled_plus": true,
+    "oos_ads_paused": false,
+    "big_diwali_sale_missed": true,
+    "avg_delivery_days": 8.3
+  },
+  "causal_hypotheses": [
+    {
+      "id": "H1",
+      "priority": "P0 - Critical",
+      "title": "LED TV Return Rate Crisis — Quality Issue",
+      "observation": "LED TV return rate spiked to 18% this month (4x platform average). Top review complaints: 'remote lag', 'WiFi drops after 2 hours'. 43% of returns are from this single SKU. Rating dropped from 4.0 to 3.5.",
+      "mechanism": "Pausing LED TV ads stops new defective units shipping and prevents further rating damage. Engaging the supplier for a firmware fix or batch replacement recovers the SKU.",
+      "action": "Pause LED TV ads immediately; contact supplier for firmware update or replacement batch; add quality disclaimer to listing.",
+      "metric": "Return rate 18%→<4%; TV rating 3.5→4.0 within 30 days.",
+      "stop_condition": "If supplier cannot provide firmware fix within 14 days, delist the SKU.",
+      "projected_recovery": "₹55,000/mo from rating recovery"
+    },
+    {
+      "id": "H2",
+      "priority": "P0 - Critical",
+      "title": "Delivery Speed — 43% Cancellations from Long Lead Time",
+      "observation": "Average delivery time 8.3 days (platform benchmark: ≤4 days). 43% of cancellations (8 orders) are due to buyers seeing long delivery estimates. Air Fryer and Robot Vacuum have 8-12 day lead times.",
+      "mechanism": "Switching to Snapdeal Fulfilment Centre (SFC) for high-velocity SKUs reduces delivery to 2-3 days, cutting delay-related cancellations by 80%.",
+      "action": "Enroll Bluetooth Speaker, Air Fryer, and Mixer Grinder in Snapdeal SFC; reduce Robot Vacuum lead time by pre-positioning units in Delhi warehouse.",
+      "metric": "Delivery-cancellation rate 43%→<10%; conversion 1.3%→1.9%.",
+      "stop_condition": "SFC onboarding takes 5 business days; manage inventory buffer during transition.",
+      "projected_recovery": "₹68,000/mo"
+    },
+    {
+      "id": "H3",
+      "priority": "P1 - High",
+      "title": "Big Diwali Sale Missed — Festive Recovery Plan",
+      "observation": "Home Electronics grew +15% in November. Farouk missed the Big Diwali Sale enrollment window. Air Fryer and Robot Vacuum are OOS during peak gifting season.",
+      "mechanism": "Enrolling in Winter Gifting Sale and restocking Air Fryer (demand: 62/month) captures post-Diwali gifting surge.",
+      "action": "Restock Air Fryer within 72 hours; enroll Mixer Grinder and Bluetooth Speaker in Snapdeal Winter Gifting Sale.",
+      "metric": "Organic impressions +35%; monthly revenue +₹45,000.",
+      "stop_condition": "Restrict enrollment to SKUs with delivery SLA ≤4 days.",
+      "projected_recovery": "₹45,000/mo"
+    }
+  ],
+  "playbook": [
+    {
+      "id": "pb_tv_quality_crisis",
+      "title": "Electronics Return Rate & Quality Issue Resolution",
+      "tags": [
+        "returns",
+        "quality",
+        "defect",
+        "tv",
+        "rating",
+        "reviews",
+        "firmware",
+        "complaint"
+      ],
+      "applies_when": "return_rate >= 0.08 or rating < 3.8",
+      "text": "LED TV return rate at 18% (4x platform average). Immediately pause sponsored ads on the TV listing. Contact supplier for firmware update addressing 'remote lag' and 'WiFi instability'. Add quality assurance note to listing. If firmware fix not available in 14 days, initiate SKU delisting to protect overall account health."
+    },
+    {
+      "id": "pb_delivery_speed",
+      "title": "Delivery Speed Improvement & SFC Enrollment",
+      "tags": [
+        "delivery",
+        "shipping",
+        "sfc",
+        "fulfilment",
+        "fast",
+        "cancellation",
+        "delay",
+        "warehouse"
+      ],
+      "applies_when": "avg_delivery_days > 5 or cancellation_reason == delivery delay",
+      "text": "43% of cancellations are from delivery delays (avg 8.3 days vs 4-day benchmark). Enroll Bluetooth Speaker and Mixer Grinder in Snapdeal Fulfilment Centre (SFC) for 2-3 day delivery. Pre-position Robot Vacuum units in Delhi SFC warehouse to reduce lead time from 12 to 3 days."
+    },
+    {
+      "id": "pb_oos_electronics",
+      "title": "Electronics OOS Recovery — Air Fryer & Robot Vacuum",
+      "tags": [
+        "oos",
+        "out of stock",
+        "air fryer",
+        "robot vacuum",
+        "restock",
+        "gifting"
+      ],
+      "applies_when": "oos_products >= 2 and category == Home Electronics",
+      "text": "Air Fryer (62 units/month demand) and Robot Vacuum (28 units/month) are OOS during peak Diwali gifting season. Emergency restock Air Fryer within 72 hours from supplier. Pause ads on both OOS listings immediately to avoid cancellations and further account health penalties."
+    },
+    {
+      "id": "pb_festive_electronics",
+      "title": "Post-Diwali Winter Gifting Campaign",
+      "tags": [
+        "festive",
+        "diwali",
+        "winter",
+        "gifting",
+        "deals",
+        "campaign",
+        "electronics",
+        "promotion"
+      ],
+      "applies_when": "not seller_enrolled_festive and category_growth >= 0.10",
+      "text": "Home Electronics grew 15% in November. Despite missing Big Diwali Sale, Winter Gifting campaign runs Nov 20 - Dec 15. Enroll Mixer Grinder and Bluetooth Speaker (both in-stock, good ratings) in the Winter Gifting Sale. Gold Seller status grants free banner placement in Electronics category pages."
+    },
+    {
+      "id": "pb_pricing_electronics",
+      "title": "Electronics Pricing vs Market Benchmark",
+      "tags": [
+        "pricing",
+        "price",
+        "competitor",
+        "margin",
+        "tv",
+        "expensive",
+        "conversion"
+      ],
+      "applies_when": "price > competitor_avg * 1.08",
+      "text": "LED TV priced ₹12,999 vs market ₹11,499 (13% premium) while having quality issues — double handicap. Pause TV ads rather than price-cut during quality investigation. Air Fryer at ₹3,499 vs ₹2,999 market — once restocked, price at ₹3,199 retaining 37% net margin."
+    }
+  ]
+}
