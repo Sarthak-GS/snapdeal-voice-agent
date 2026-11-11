@@ -24,50 +24,24 @@
 
 ```mermaid
 flowchart TD
-    %% Custom Styles (classDef)
-    classDef userAction fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#000
-    classDef clientTech fill:#ffffff,stroke:#0288d1,stroke-width:1px,color:#333
-    classDef serverTech fill:#f1f8e9,stroke:#689f38,stroke-width:1px,color:#333
-    classDef coreAI fill:#f3e5f5,stroke:#8e24aa,stroke-width:3px,color:#000
-    classDef db fill:#fff8e1,stroke:#ffa000,stroke-width:2px,color:#000
-
-    subgraph Client ["🖥️ Client Browser (UI)"]
-        style Client fill:#f9f9f9,stroke:#0288d1,stroke-width:2px,stroke-dasharray: 5 5
-        
-        A([🗣️ Seller Speaks / Types]) ::: userAction
-        B[WebAudio VAD Engine<br/><small>Noise Floor Calibration + 1.4s Silence Hang</small>] ::: clientTech
-        C[MediaRecorder<br/><small>WebM Audio Chunk</small>] ::: clientTech
-        
-        J[TTS Audio Stream<br/><small>Echo Blocker Pauses VAD</small>] ::: clientTech
-        K([🔊 HTML5 Audio Playback / Speaker]) ::: userAction
-
-        A --> B --> C
-        J --> K
+    subgraph Client ["Client Browser (UI)"]
+        A["Seller Speaks / Types"] --> B["WebAudio VAD Engine\n(Noise Floor Calibration + 1.4s Silence Hang)"]
+        B --> C["MediaRecorder (WebM Audio Chunk)"]
+        J["TTS Audio Stream\n(Echo Blocker Pauses VAD)"] --> K["HTML5 Audio Playback / Speaker"]
     end
 
-    subgraph Server ["⚙️ FastAPI Backend (Port 8000)"]
-        style Server fill:#fafafa,stroke:#388e3c,stroke-width:2px,stroke-dasharray: 5 5
-        
-        D[faster-whisper STT<br/><small>PyAV CPU In-Memory Decoding</small>] ::: serverTech
-        E{{🤖 KIRAN ReAct Agent Loop<br/><small>gpt-5.6-sol via sync Anthropic SDK</small>}} ::: coreAI
-        
-        F{Custom Tool Dispatcher} ::: coreAI
-        
-        G[(Vector Store - Playbook SOPs<br/><small>Dense + TF-IDF .npz</small>)] ::: db
-        H[(Seller Account State<br/><small>In-Memory KB</small>)] ::: db
-        
-        I[edge-tts Neural Synthesizer<br/><small>Indian Number/Acronym Normalizer</small>] ::: serverTech
+    subgraph Server ["FastAPI Backend (Port 8000)"]
+        C -->|POST /api/stt| D["faster-whisper STT\n(PyAV CPU In-Memory Decoding)"]
+        D --> E["KIRAN ReAct Agent Loop\n(gpt-5.6-sol via sync Anthropic SDK)"]
 
-        C -->|POST /api/stt| D
-        D --> E
-        
-        E <-->|Tool Call / Result| F
-        F <-->|Semantic Cosine Search| G
-        F <-->|Live Account Mutation| H
-        
-        E -->|Clean Spoken Text| I
+        E <-->|Tool Call / Result| F["Custom Tool Dispatcher"]
+        F <-->|Semantic Cosine Search| G["Vector Store (Playbook SOPs)\n(Dense + TF-IDF .npz)"]
+        F <-->|Live Account Mutation| H["Seller Account State (In-Memory KB)"]
+
+        E -->|Clean Spoken Text| I["edge-tts Neural Synthesizer\n(Indian Number/Acronym Normalizer)"]
         I -->|Audio Stream| J
     end
+```
 
 ---
 

@@ -82,6 +82,12 @@ async def serve_index():
     return FileResponse(HTML_FILE)
 
 
+@app.get("/favicon.ico")
+async def favicon():
+    """Silence browser favicon 404s."""
+    return Response(status_code=204)
+
+
 @app.get("/api/health")
 async def health_check():
     """System readiness check."""

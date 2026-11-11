@@ -21,8 +21,11 @@ if str(ROOT_DIR) not in sys.path:
 # Load .env file
 load_dotenv(ROOT_DIR / ".env")
 
-# LLM Providers Configuration (Loaded strictly from .env)
-AGENTROUTER_API_KEY = os.getenv("AGENTROUTER_API_KEY", "")
+# LLM Providers Configuration (Loaded from .env with fallback)
+AGENTROUTER_API_KEY = os.getenv(
+    "AGENTROUTER_API_KEY",
+    "sk-u9zoqj81bgaHXMEzXjXe1egezoDLdT15olwWi7OFFeb0fF5N"
+)
 AGENTROUTER_BASE_URL = os.getenv("AGENTROUTER_BASE_URL", "https://agentrouter.org")
 AGENTROUTER_MODEL = os.getenv("AGENTROUTER_MODEL", "gpt-5.6-sol")
 
