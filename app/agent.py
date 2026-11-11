@@ -114,6 +114,31 @@ CRITICAL — NEVER DO THIS:
 {snapshot}"""
 
 
+def _extract_resp_text(resp) -> str:
+    """Safely extracts text regardless of whether Anthropic SDK returns a Message object, dict, or str."""
+    if isinstance(resp, str):
+        return resp.strip()
+    if isinstance(resp, dict):
+        content = resp.get("content", "")
+        if isinstance(content, list):
+            return "".join(
+                c.get("text", "") if isinstance(c, dict) else getattr(c, "text", "")
+                for c in content
+            ).strip()
+        return str(content).strip()
+    if hasattr(resp, "content"):
+        content = resp.content
+        if isinstance(content, list):
+            text_blocks = [
+                getattr(b, "text", "")
+                for b in content
+                if hasattr(b, "text") or getattr(b, "type", "") == "text"
+            ]
+            return "".join(t for t in text_blocks if t).strip()
+        return str(content).strip()
+    return str(resp).strip()
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # LLM PROVIDER CASCADE (AgentRouter -> Ollama -> Gemini -> Groq)
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -137,12 +162,7 @@ async def _call_agentrouter(messages: list, system: str, max_tokens: int = MAX_T
     for attempt in range(2):
         try:
             resp = await loop.run_in_executor(None, _sync_create)
-            text_blocks = [
-                getattr(b, "text", "")
-                for b in resp.content
-                if hasattr(b, "text") or getattr(b, "type", "") == "text"
-            ]
-            text = "".join(t for t in text_blocks if t).strip()
+            text = _extract_resp_text(resp)
             if text:
                 return text
         except Exception as e:
@@ -256,11 +276,7 @@ async def call_llm_with_tools(
 
         try:
             resp = await loop.run_in_executor(None, _sync_create)
-            raw_text = "".join(
-                getattr(b, "text", "")
-                for b in resp.content
-                if hasattr(b, "text") or getattr(b, "type", "") == "text"
-            ).strip()
+            raw_text = _extract_resp_text(resp)
 
             if not raw_text:
                 logger.warning(f"[tool_loop] Iteration {iteration} returned empty text (stop_reason={resp.stop_reason}). Falling back to plain cascade.")

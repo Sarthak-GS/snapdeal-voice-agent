@@ -105,6 +105,7 @@ async def test_llm():
     """Diagnostic endpoint to inspect LLM errors on cloud hosts."""
     import anthropic
     from app.config import AGENTROUTER_API_KEY, AGENTROUTER_BASE_URL, AGENTROUTER_MODEL
+    from app.agent import _extract_resp_text
     try:
         client = anthropic.Anthropic(
             api_key=AGENTROUTER_API_KEY,
@@ -116,10 +117,20 @@ async def test_llm():
             max_tokens=50,
             messages=[{"role": "user", "content": "ping"}],
         )
-        return {"status": "ok", "key_prefix": AGENTROUTER_API_KEY[:10], "reply": resp.content[0].text}
+        return {
+            "status": "ok",
+            "key_prefix": AGENTROUTER_API_KEY[:10],
+            "resp_type": type(resp).__name__,
+            "reply": _extract_resp_text(resp),
+        }
     except Exception as e:
         import traceback
-        return {"status": "error", "key_prefix": AGENTROUTER_API_KEY[:10], "error": str(e), "traceback": traceback.format_exc()}
+        return {
+            "status": "error",
+            "key_prefix": AGENTROUTER_API_KEY[:10],
+            "error": str(e),
+            "traceback": traceback.format_exc(),
+        }
 
 
 @app.get("/api/sellers")
