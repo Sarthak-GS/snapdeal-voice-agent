@@ -176,9 +176,15 @@ async def start_session(req: StartRequest):
         "blueprint": None,
     }
 
-    greeting, provider, tools_called = await call_llm_with_tools(
-        [init_msg], system_prompt, sess_obj, max_tokens=MAX_TOKENS
-    )
+    try:
+        greeting, provider, tools_called = await call_llm_with_tools(
+            [init_msg], system_prompt, sess_obj, max_tokens=MAX_TOKENS
+        )
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
+        logger.error(f"[start_session error] {tb}")
+        raise HTTPException(status_code=500, detail=f"LLM Error: {str(e)}\n{tb}")
 
     sess_obj["history"] = [init_msg, {"role": "assistant", "content": greeting}]
     sessions[session_id] = sess_obj
