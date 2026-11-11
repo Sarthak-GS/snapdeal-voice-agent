@@ -1,6 +1,10 @@
 # Snapdeal AI Virtual KAM — Project KIRAN
 > **Autonomous, Voice-First AI Key Account Manager for E-Commerce Marketplace Sellers**
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Railway%20Deployment-success?style=for-the-badge&logo=railway)](https://snapdeal-voice-agent-production.up.railway.app/)
+
+👉 **Live URL**: [https://snapdeal-voice-agent-production.up.railway.app/](https://snapdeal-voice-agent-production.up.railway.app/)
+
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Whisper](https://img.shields.io/badge/STT-faster--whisper%20(int8)-blue)](https://github.com/SYSTRAN/faster-whisper)
 [![Edge-TTS](https://img.shields.io/badge/TTS-Neural%20Indian%20English-orange)](https://github.com/rany2/edge-tts)

@@ -1,5 +1,8 @@
 # Snapdeal AI Virtual KAM's Submission Note
 
+> 🚀 **Live Production Deployment**: [https://snapdeal-voice-agent-production.up.railway.app/](https://snapdeal-voice-agent-production.up.railway.app/)  
+> *(Hosted on Railway with full HTTPS microphone permissions & real-time WebAudio VAD)*
+
 ## 1. Project Overview
 **KIRAN** is an autonomous, voice-first AI Virtual Key Account Manager (KAM) designed for Snapdeal sellers experiencing business distress. It conducts natural, two-way voice conversations. It analyzes real-time account data, identifies root causes behind declining sales, proposes margin-safe recovery strategies, executes catalog changes live upon verbal consent, and generates a structured 7-Day Pilot Blueprint.
 
@@ -16,6 +19,7 @@
 | **Voice Activity Detection (VAD)** | Web Audio API (`AudioContext`, `AnalyserNode`, RMS energy calibration) |
 | **Vector RAG Store** | Dual Dense (`nomic-embed-text`) + Sub-Word TF-IDF Cosine Similarity (`.npz`) |
 | **Backend API** | FastAPI + Uvicorn + Pydantic v2 + Python 3.10 |
+| **Cloud Deployment** | Railway (`amd64` Linux Container, continuous execution, Automatic HTTPS) |
 | **Frontend UI** | Single-page HTML5, CSS3, Vanilla JavaScript (zero external framework bloat) |
 
 ---
@@ -88,12 +92,20 @@ Rather than bloating the prompt with static text, RAG is selectively used to ret
 - **Bare-JSON Tool Interceptor & Sanitizer**: When the LLM outputs bare tool JSON without `<tool_call>` tags, the agent loop catches it, executes the tool, feeds the result back, and forces natural spoken speech. `sanitize_response()` strips any leaked JSON or meta-tokens before reaching TTS or the user.
 - **WebAudio VAD & Echo Prevention**: WebAudio measures RMS energy in the browser, auto-calibrating background noise during the first 500ms. When KIRAN speaks, `vad.pause()` halts microphone capture to eliminate acoustic echo feedback.
 - **Headless CPU STT**: `faster-whisper` runs locally on CPU with `int8` quantization using PyAV for direct in-memory WebM decoding, avoiding external `ffmpeg` binary dependencies and cloud latency.
+- **PyAV 18+ Audio Decoding Compatibility & Monkey-Patch**: `faster-whisper` decodes incoming audio chunks using PyAV (`av.open(..., metadata_errors="ignore")`). PyAV versions 18+ deprecated and removed the `metadata_errors` keyword parameter, causing `TypeError: open() got an unexpected keyword argument 'metadata_errors'` on newer Python environments (such as Python 3.12/3.13 default cloud builders). We introduced a runtime interceptor monkey-patch in `app/voice.py` that safely strips `metadata_errors` before invoking underlying C-bindings, combined with pinning `av<18.0.0` in `requirements.txt` for 100% cross-environment robustness.
 - **Indian English Spoken Normalization**: Regular expressions convert technical and financial strings into natural conversational speech (e.g., `₹2,00,000` → `2 lakh rupees`, `OOS` → `out of stock`, `SKU` → `product`, `SFC` → `Snapdeal Fulfilment Centre`).
 - **Dynamic Health Score Engine**: Deterministic algorithm calculates account health (0–100) and risk band (`healthy`, `watch`, `at_risk`, `critical`) from live metrics, updating in real time when actions are applied.
 
 ---
 
-## 7. How to Run (First-Time Setup)
+## 7. How to Access & Run
+
+### Live Cloud Deployment
+Access the live interactive voice application immediately at:  
+👉 **[https://snapdeal-voice-agent-production.up.railway.app/](https://snapdeal-voice-agent-production.up.railway.app/)**  
+*(Requires microphone permission in browser. Fully functional with real-time WebAudio VAD and live ReAct tools).*
+
+### Local First-Time Setup (Optional)
 
 ```bash
 # 1. Clone repository & navigate to directory
