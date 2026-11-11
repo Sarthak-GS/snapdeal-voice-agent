@@ -116,17 +116,19 @@ CRITICAL — NEVER DO THIS:
 
 def _extract_resp_text(resp) -> str:
     """Safely extracts text regardless of whether Anthropic SDK returns a Message object, dict, or str."""
+    raw = ""
     if isinstance(resp, str):
-        return resp.strip()
-    if isinstance(resp, dict):
+        raw = resp.strip()
+    elif isinstance(resp, dict):
         content = resp.get("content", "")
         if isinstance(content, list):
-            return "".join(
+            raw = "".join(
                 c.get("text", "") if isinstance(c, dict) else getattr(c, "text", "")
                 for c in content
             ).strip()
-        return str(content).strip()
-    if hasattr(resp, "content"):
+        else:
+            raw = str(content).strip()
+    elif hasattr(resp, "content"):
         content = resp.content
         if isinstance(content, list):
             text_blocks = [
@@ -134,9 +136,20 @@ def _extract_resp_text(resp) -> str:
                 for b in content
                 if hasattr(b, "text") or getattr(b, "type", "") == "text"
             ]
-            return "".join(t for t in text_blocks if t).strip()
-        return str(content).strip()
-    return str(resp).strip()
+            raw = "".join(t for t in text_blocks if t).strip()
+        else:
+            raw = str(content).strip()
+    else:
+        raw = str(resp).strip()
+
+    # Detect if an unofficial proxy returned a WAF Captcha HTML page
+    if "<!doctype html" in raw.lower() or "aliyun_waf" in raw.lower() or "cf_app_waf" in raw.lower():
+        raise PermissionError(
+            "AgentRouter WAF firewall blocked the request with a CAPTCHA challenge "
+            "(common on cloud datacenter IPs like Render/AWS). Please use an official API key."
+        )
+
+    return raw
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
