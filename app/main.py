@@ -100,6 +100,28 @@ async def health_check():
     }
 
 
+@app.get("/api/test_llm")
+async def test_llm():
+    """Diagnostic endpoint to inspect LLM errors on cloud hosts."""
+    import anthropic
+    from app.config import AGENTROUTER_API_KEY, AGENTROUTER_BASE_URL, AGENTROUTER_MODEL
+    try:
+        client = anthropic.Anthropic(
+            api_key=AGENTROUTER_API_KEY,
+            base_url=AGENTROUTER_BASE_URL,
+            timeout=15.0,
+        )
+        resp = client.messages.create(
+            model=AGENTROUTER_MODEL,
+            max_tokens=50,
+            messages=[{"role": "user", "content": "ping"}],
+        )
+        return {"status": "ok", "key_prefix": AGENTROUTER_API_KEY[:10], "reply": resp.content[0].text}
+    except Exception as e:
+        import traceback
+        return {"status": "error", "key_prefix": AGENTROUTER_API_KEY[:10], "error": str(e), "traceback": traceback.format_exc()}
+
+
 @app.get("/api/sellers")
 async def list_sellers():
     """Returns summaries and health scores for all available sellers."""
